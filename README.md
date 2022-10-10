@@ -11,4 +11,6 @@ th_1-utm_source=distribute.pc_relevant_t0.none-task-download-2%7Edefault%7ECTRLI
 ST%7EFeaturesSort-1-12318974-blog-125664436.t0_edu_mix&utm_relevant_index=1
 
 FOR code
-you can run the code from s1-s5
+
+you can run the code from S1-S5
+Adaptive_frequency_selection.m and S1ExtractFeature.m can be used in combination to complete the selection of fault-related frequency bands
