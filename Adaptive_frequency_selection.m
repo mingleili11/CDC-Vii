@@ -1,149 +1,153 @@
 clc
 clear
 close all
-file_path =  'E:\windows\Ñ§Êõ\»ã±¨\33 ¿ªÌâ\Õë¶Ô·½°¸Ò»µÄ³ÌĞò\FEM\PHM 2012\zhenghaiyang-phm-ieee-2012-data-challenge-dataset-master\phm-ieee-2012-data-challenge-dataset\Full_Test_Set\Bearing1_3\';% ÎÄ¼ş¼ĞÂ·¾¶
-% È«ÊÙÃüÕñ¶¯ĞÅºÅ
-csv_acc_path_list = dir(strcat(file_path,'acc*.csv'));%»ñÈ¡¸ÃÎÄ¼ş¼ĞÖĞËùÓĞcsv¸ñÊ½µÄÎÄ¼ş
-csv_acc_num = length(csv_acc_path_list);%»ñÈ¡ÎÄ¼ş×ÜÊıÁ¿
-if csv_acc_num > 0 %ÓĞÂú×ãÌõ¼şµÄÎÄ¼ş
-        for j = 1:csv_acc_num %ÖğÒ»¶ÁÈ¡ÎÄ¼ş
-            csv_acc_name = csv_acc_path_list(j).name;% ÎÄ¼şÃû
+file_path =  'E:\windows\å­¦æœ¯\æ±‡æŠ¥\33 å¼€é¢˜\é’ˆå¯¹æ–¹æ¡ˆä¸€çš„ç¨‹åº\FEM\PHM 2012\zhenghaiyang-phm-ieee-2012-data-challenge-dataset-master\phm-ieee-2012-data-challenge-dataset\Full_Test_Set\Bearing1_6\';% æ–‡ä»¶å¤¹è·¯å¾„
+% å…¨å¯¿å‘½æŒ¯åŠ¨ä¿¡å·
+csv_acc_path_list = dir(strcat(file_path,'acc*.csv'));%è·å–è¯¥æ–‡ä»¶å¤¹ä¸­æ‰€æœ‰csvæ ¼å¼çš„æ–‡ä»¶
+csv_acc_num = length(csv_acc_path_list);%è·å–æ–‡ä»¶æ€»æ•°é‡
+if csv_acc_num > 0 %æœ‰æ»¡è¶³æ¡ä»¶çš„æ–‡ä»¶
+        for j = 1:csv_acc_num %é€ä¸€è¯»å–æ–‡ä»¶
+            csv_acc_name = csv_acc_path_list(j).name;% æ–‡ä»¶å
             csv_acc =  csvread(strcat(file_path,csv_acc_name));
             csv_acc_data(:,:,j)=csv_acc;
-            fprintf('%d %d %s\n',csv_acc_num,j,strcat(file_path,csv_acc_name));% ÏÔÊ¾ÕıÔÚ´¦ÀíµÄÎÄ¼şÃû
+            fprintf('%d %d %s\n',csv_acc_num,j,strcat(file_path,csv_acc_name));% æ˜¾ç¤ºæ­£åœ¨å¤„ç†çš„æ–‡ä»¶å
         end
 end
-% %Õë¶Ôfull_test_setµÄbearing1_4
-% file_path =  'E:\windows\Ñ§Êõ\»ã±¨\33 ¿ªÌâ\Õë¶Ô·½°¸Ò»µÄ³ÌĞò\FEM\PHM 2012\zhenghaiyang-phm-ieee-2012-data-challenge-dataset-master\phm-ieee-2012-data-challenge-dataset\Full_Test_Set\Bearing1_4\';% ÎÄ¼ş¼ĞÂ·¾¶
-% %% È«ÊÙÃüÕñ¶¯ĞÅºÅ
-% csv_acc_path_list = dir(strcat(file_path,'acc*.csv'));%»ñÈ¡¸ÃÎÄ¼ş¼ĞÖĞËùÓĞcsv¸ñÊ½µÄÎÄ¼ş
-% csv_acc_num = length(csv_acc_path_list);%»ñÈ¡ÎÄ¼ş×ÜÊıÁ¿
-% if csv_acc_num > 0 %ÓĞÂú×ãÌõ¼şµÄÎÄ¼ş
-%         for j = 1:csv_acc_num %ÖğÒ»¶ÁÈ¡ÎÄ¼ş
-%             csv_acc_name = csv_acc_path_list(j).name;% ÎÄ¼şÃû
+%é’ˆå¯¹full_test_setçš„bearing1_4
+% file_path =  'E:\windows\å­¦æœ¯\æ±‡æŠ¥\33 å¼€é¢˜\é’ˆå¯¹æ–¹æ¡ˆä¸€çš„ç¨‹åº\FEM\PHM 2012\zhenghaiyang-phm-ieee-2012-data-challenge-dataset-master\phm-ieee-2012-data-challenge-dataset\Full_Test_Set\Bearing1_4\';% æ–‡ä»¶å¤¹è·¯å¾„
+% %% å…¨å¯¿å‘½æŒ¯åŠ¨ä¿¡å·
+% csv_acc_path_list = dir(strcat(file_path,'acc*.csv'));%è·å–è¯¥æ–‡ä»¶å¤¹ä¸­æ‰€æœ‰csvæ ¼å¼çš„æ–‡ä»¶
+% csv_acc_num = length(csv_acc_path_list);%è·å–æ–‡ä»¶æ€»æ•°é‡
+% if csv_acc_num > 0 %æœ‰æ»¡è¶³æ¡ä»¶çš„æ–‡ä»¶
+%         for j = 1:csv_acc_num %é€ä¸€è¯»å–æ–‡ä»¶
+%             csv_acc_name = csv_acc_path_list(j).name;% æ–‡ä»¶å
 %             csv_acc=dlmread(strcat(file_path,csv_acc_name), ';');
 %             csv_acc_data(:,:,j)=csv_acc;
-%             fprintf('%d %d %s\n',csv_acc_num,j,strcat(file_path,csv_acc_name));% ÏÔÊ¾ÕıÔÚ´¦ÀíµÄÎÄ¼şÃû
+%             fprintf('%d %d %s\n',csv_acc_num,j,strcat(file_path,csv_acc_name));% æ˜¾ç¤ºæ­£åœ¨å¤„ç†çš„æ–‡ä»¶å
 %         end
 % end
 
-% ºÏ²¢¾ØÕó Ê±¼ä*Í¨µÀ
-channel=6;   %ĞÅºÅµÄÍ¨µÀÊı
+% åˆå¹¶çŸ©é˜µ æ—¶é—´*é€šé“
+channel=6;   %ä¿¡å·çš„é€šé“æ•°
 csv_acc_data_change=permute(csv_acc_data,[2 1 3]);
 csv_acc_data=reshape(csv_acc_data_change,channel,prod(size(csv_acc_data))/channel)';
 
-% % %% È«ÊÙÃüÎÂ¶ÈĞÅºÅ
-% % csv_temp_path_list = dir(strcat(file_path,'temp*.csv'));%»ñÈ¡¸ÃÎÄ¼ş¼ĞÖĞËùÓĞcsv¸ñÊ½µÄÎÄ¼ş
-% % csv_temp_num = length(csv_temp_path_list);%»ñÈ¡ÎÄ¼ş×ÜÊıÁ¿
+% % %% å…¨å¯¿å‘½æ¸©åº¦ä¿¡å·
+% % csv_temp_path_list = dir(strcat(file_path,'temp*.csv'));%è·å–è¯¥æ–‡ä»¶å¤¹ä¸­æ‰€æœ‰csvæ ¼å¼çš„æ–‡ä»¶
+% % csv_temp_num = length(csv_temp_path_list);%è·å–æ–‡ä»¶æ€»æ•°é‡
 % % delimiter = ',';
 % % formatSpec = '%s%s%s%s%s%s%[^\n\r]';
-% % if csv_temp_num > 0 %ÓĞÂú×ãÌõ¼şµÄÎÄ¼ş
-% %         for j = 1:csv_temp_num %ÖğÒ»¶ÁÈ¡ÎÄ¼ş
-% %             csv_temp_name = csv_temp_path_list(j).name;% ÎÄ¼şÃû
+% % if csv_temp_num > 0 %æœ‰æ»¡è¶³æ¡ä»¶çš„æ–‡ä»¶
+% %         for j = 1:csv_temp_num %é€ä¸€è¯»å–æ–‡ä»¶
+% %             csv_temp_name = csv_temp_path_list(j).name;% æ–‡ä»¶å
 % %             csv_temp_fileID = fopen(strcat(file_path,csv_temp_name),'r');
 % %             csv_temp = textscan(csv_temp_fileID, formatSpec, 'Delimiter', delimiter);
 % %             for i=1:size(csv_temp{1,1},1)
 % %                 csv_temp_data(i,:,j)=str2num(csv_temp{1,1}{i,1})';
 % %             end
-% %             fprintf('%d %d %s\n',csv_temp_num,j,strcat(file_path,csv_temp_name));% ÏÔÊ¾ÕıÔÚ´¦ÀíµÄÎÄ¼şÃû
+% %             fprintf('%d %d %s\n',csv_temp_num,j,strcat(file_path,csv_temp_name));% æ˜¾ç¤ºæ­£åœ¨å¤„ç†çš„æ–‡ä»¶å
 % %             fclose(csv_temp_fileID);
 % %         end
 % % end
 % % 
-% % ºÏ²¢¾ØÕó Ê±¼ä*Í¨µÀ
-% % channel=5;   %ĞÅºÅµÄÍ¨µÀÊı
+% % åˆå¹¶çŸ©é˜µ æ—¶é—´*é€šé“
+% % channel=5;   %ä¿¡å·çš„é€šé“æ•°
 % % csv_temp_data_change=permute(csv_temp_data,[2 1 3]);
 % % csv_temp_data=reshape(csv_temp_data_change,channel,prod(size(csv_temp_data))/channel)';
 % 
-%% È«ÊÙÃüÕñ¶¯ĞÅºÅºÍÎÂ¶ÈĞÅºÅµÄÊ±ÓòÍ¼
+%% å…¨å¯¿å‘½æŒ¯åŠ¨ä¿¡å·å’Œæ¸©åº¦ä¿¡å·çš„æ—¶åŸŸå›¾
 clearvars -except csv_acc_data csv_temp_data csv_acc_num
-figure;subplot 211;plot(csv_acc_data(:,5));title('Ë®Æ½Õñ¶¯ĞÅºÅ');
-       subplot 212;plot(csv_acc_data(:,6));title('ÊúÖ±Õñ¶¯ĞÅºÅ');
-% % %figure;plot(csv_temp_data(:,5));title('ÎÂ¶ÈĞÅºÅ')
+plot(csv_acc_data(:,5));title('æ°´å¹³æŒ¯åŠ¨ä¿¡å·');
+figure;subplot 211;plot(csv_acc_data(:,5));title('æ°´å¹³æŒ¯åŠ¨ä¿¡å·');
+       subplot 212;plot(csv_acc_data(:,6));title('ç«–ç›´æŒ¯åŠ¨ä¿¡å·');
+% % %figure;plot(csv_temp_data(:,5));title('æ¸©åº¦ä¿¡å·')
 
 a1=csv_acc_data(:,5);
 a2=csv_acc_data(:,6);
-save ('E:\windows\Ñ§Êõ\»ã±¨\33 ¿ªÌâ\Õë¶Ô·½°¸Ò»µÄ³ÌĞò\FEM\PHM 2012\a1.mat')
-save ('E:\windows\Ñ§Êõ\»ã±¨\33 ¿ªÌâ\Õë¶Ô·½°¸Ò»µÄ³ÌĞò\FEM\PHM 2012\a2.mat')
+save ('E:\windows\å­¦æœ¯\æ±‡æŠ¥\33 å¼€é¢˜\é’ˆå¯¹æ–¹æ¡ˆä¸€çš„ç¨‹åº\FEM\PHM 2012\a1.mat')
+save ('E:\windows\å­¦æœ¯\æ±‡æŠ¥\33 å¼€é¢˜\é’ˆå¯¹æ–¹æ¡ˆä¸€çš„ç¨‹åº\FEM\PHM 2012\a2.mat')
 
-load ('E:\windows\Ñ§Êõ\»ã±¨\33 ¿ªÌâ\Õë¶Ô·½°¸Ò»µÄ³ÌĞò\FEM\PHM 2012\a1.mat')
-load ('E:\windows\Ñ§Êõ\»ã±¨\33 ¿ªÌâ\Õë¶Ô·½°¸Ò»µÄ³ÌĞò\FEM\PHM 2012\a2.mat')
+
+
+load ('E:\windows\å­¦æœ¯\æ±‡æŠ¥\33 å¼€é¢˜\é’ˆå¯¹æ–¹æ¡ˆä¸€çš„ç¨‹åº\FEM\PHM 2012\a1.mat')
+load ('E:\windows\å­¦æœ¯\æ±‡æŠ¥\33 å¼€é¢˜\é’ˆå¯¹æ–¹æ¡ˆä¸€çš„ç¨‹åº\FEM\PHM 2012\a2.mat')
 x_input1=a1;
 x_input2=a2;
 
-plot(x_input1);title('ÊäÈëĞÅºÅÊ±ÓòÍ¼Ïñ')   %»æÖÆÊäÈëĞÅºÅÊ±ÓòÍ¼Ïñ
+plot(x_input1);title('è¾“å…¥ä¿¡å·æ—¶åŸŸå›¾åƒ')   %ç»˜åˆ¶è¾“å…¥ä¿¡å·æ—¶åŸŸå›¾åƒ
 x=x_input1;       
 fs=25.6e3;
 
 t1=0:1/fs:0.1*size(a1,1)/2560;
 t1=t1(1:end-1);
-x_noise1=2*sin(2*pi*150.*t1);
-x_noise2=10*sin(2*pi*50.*t1);
-x_noise3=2*sin(2*pi*100.*t1);
-x_noise4=4*sin(2*pi*20.*t1);
-x_noise5=6*sin(2*pi*180.*t1);
-x_noise6=3*sin(2*pi*75.*t1);
-x_noise7=5*sin(2*pi*108.*t1);
-x_noise8=7*sin(2*pi*159.*t1);
-x_noise=x_noise1+x_noise2+x_noise3+x_noise4+x_noise5+x_noise6+x_noise7+x_noise8;
-x_cobination=x_noise'+x_input1;
-plot(t1,x_cobination);title('»ùÓÚ¾®ÏÂÊäÈëĞÅºÅÊ±ÓòÍ¼Ïñ')   %»æÖÆÊäÈëĞÅºÅÊ±ÓòÍ¼Ïñ
+% x_noise1=2*sin(2*pi*150.*t1);
+% x_noise2=10*sin(2*pi*50.*t1);
+% x_noise3=2*sin(2*pi*100.*t1);
+% x_noise4=4*sin(2*pi*20.*t1);
+% x_noise5=6*sin(2*pi*180.*t1);
+% x_noise6=3*sin(2*pi*75.*t1);
+% x_noise7=5*sin(2*pi*108.*t1);
+% x_noise8=7*sin(2*pi*159.*t1);
+% x_noise=x_noise1+x_noise2+x_noise3+x_noise4+x_noise5+x_noise6+x_noise7+x_noise8;
+% x_cobination=x_input1+x_noise';
+x_cobination=x_input1;
+plot(t1,x_cobination);title('åŸºäºäº•ä¸‹è¾“å…¥ä¿¡å·æ—¶åŸŸå›¾åƒ')   %ç»˜åˆ¶è¾“å…¥ä¿¡å·æ—¶åŸŸå›¾åƒ
 
-N=length(x_cobination); %²ÉÑùµã¸öÊı
-signalFFT=abs(fft(x_cobination,N));%ÕæÊµµÄ·ùÖµ
+N=length(x_cobination); %é‡‡æ ·ç‚¹ä¸ªæ•°
+signalFFT=abs(fft(x_cobination,N));%çœŸå®çš„å¹…å€¼
 Y=2*signalFFT/N;
 f=(0:N/2)*(fs/N);
 figure;plot(f,Y(1:N/2+1));
-ylabel('amp'); xlabel('frequency');title('ÊäÈëĞÅºÅµÄÆµÆ×');grid on
-D_layers=5;
-wpt=wpdec(x_cobination,D_layers,'dmey');        %½øĞĞD_layers²ãĞ¡²¨°ü·Ö½â
-plot(wpt);                          %»æÖÆĞ¡²¨°üÊ÷
+ylabel('amp'); xlabel('frequency');title('è¾“å…¥ä¿¡å·çš„é¢‘è°±');grid on
+D_layers=3;
+wpt=wpdec(x_cobination,D_layers,'dmey');        %è¿›è¡ŒD_layerså±‚å°æ³¢åŒ…åˆ†è§£
+plot(wpt);                          %ç»˜åˆ¶å°æ³¢åŒ…æ ‘
 A = (1:2^D_layers);
 for i=1:D_layers-1
     A = A+2^(i);
 end
 A=A';
-nodes=[A];   %µÚ3²ãµÄ½ÚµãºÅ
-ord=wpfrqord(nodes);  %Ğ¡²¨°üÏµÊıÖØÅÅ£¬ordÊÇÖØÅÅºóĞ¡²¨°üÏµÊıË÷Òı¹¹³ÉµÄ¾ØÕó¡¡Èç3²ã·Ö½âµÄ[1;2;4;3;7;8;6;5]
-nodes_ord=nodes(ord); %ÖØÅÅºóµÄĞ¡²¨ÏµÊı
+nodes=[A];   %ç¬¬3å±‚çš„èŠ‚ç‚¹å·
+ord=wpfrqord(nodes);  %å°æ³¢åŒ…èŠ‚ç‚¹å·é‡æ’ï¼Œordæ˜¯é‡æ’åå°æ³¢åŒ…ç³»æ•°ç´¢å¼•æ„æˆçš„çŸ©é˜µã€€å¦‚3å±‚åˆ†è§£çš„[1;2;4;3;7;8;6;5]
+nodes_ord=nodes(ord); %é‡æ’åçš„å°æ³¢åŒ…èŠ‚ç‚¹å·
 for i=1:2^D_layers
-rex3(:,i)=wprcoef(wpt,nodes_ord(i));  %ÊµÏÖ¶Ô½ÚµãĞ¡²¨½Úµã½øĞĞÖØ¹¹        
+rex3(:,i)=wprcoef(wpt,nodes_ord(i));  %å®ç°å¯¹èŠ‚ç‚¹å°æ³¢èŠ‚ç‚¹è¿›è¡Œé‡æ„        
 end
  
-figure;                         %»æÖÆµÚ3²ã¸÷¸ö½Úµã·Ö±ğÖØ¹¹ºóĞÅºÅµÄÆµÆ×
+figure;                         %ç»˜åˆ¶ç¬¬3å±‚å„ä¸ªèŠ‚ç‚¹åˆ†åˆ«é‡æ„åä¿¡å·çš„é¢‘è°±
 for i=0:2^D_layers-1
 subplot(8,4,i+1);
 x_sign= rex3(:,i+1); 
-N=length(x_sign); %²ÉÑùµã¸öÊı
-signalFFT=abs(fft(x_sign,N));%ÕæÊµµÄ·ùÖµ
+N=length(x_sign); %é‡‡æ ·ç‚¹ä¸ªæ•°
+signalFFT=abs(fft(x_sign,N));%çœŸå®çš„å¹…å€¼
 Y=2*signalFFT/N;
 f=(0:N/2)*(fs/N);
 plot(f,Y(1:N/2+1));
 ylabel('amp'); xlabel('frequency');grid on
-axis([0 12000 0 20e-3]); title(['Ğ¡²¨°üµÚ3²ã',num2str(i),'½ÚµãĞÅºÅÆµÆ×']);
+axis([0 12000 0 20e-3]); title(['å°æ³¢åŒ…ç¬¬3å±‚',num2str(i),'èŠ‚ç‚¹ä¿¡å·é¢‘è°±']);
 end
-
-%% wavelet packet coefficients. ÇóÈ¡Ğ¡²¨°ü·Ö½âµÄ¸÷¸ö½ÚµãµÄĞ¡²¨°üÏµÊı
-for i=1:2^D_layers
-cfs{i}=wpcoef(wpt,nodes_ord(i));  %¶ÔÖØÅÅĞòºóµÚ3²ãi½ÚµãµÄĞ¡²¨°üÏµÊı[(fs/2)*(i-1)-(fs/2)*i]Hz
-E_cfs(i)=norm(cfs{i},2)^2;  %% 1-·¶Êı£º¾ÍÊÇnorm(...,1)£¬¼´¸÷ÔªËØ¾ø¶ÔÖµÖ®ºÍ£»2-·¶Êı£º¾ÍÊÇnorm(...,2)£¬¼´¸÷ÔªËØÆ½·½ºÍ¿ª¸ùºÅ£»
+%% wavelet packet coefficients. æ±‚å–å°æ³¢åŒ…åˆ†è§£çš„å„ä¸ªèŠ‚ç‚¹çš„å°æ³¢åŒ…ç³»æ•°
+for i=1:2^D_layers %è¿™é‡Œå…ˆé‡æ„ä¹‹åå†æ’åºæ˜¯æ²¡é—®é¢˜çš„ï¼Œå› ä¸ºcfs{i}æ˜¯å’Œrex3(:,i)æœ‰ç›¸ä¼¼æ€§çš„
+cfs{i}=wpcoef(wpt,nodes_ord(i));  %å¯¹é‡æ’åºåç¬¬3å±‚ièŠ‚ç‚¹çš„å°æ³¢åŒ…ç³»æ•°[(fs/2)*(i-1)-(fs/2)*i]Hz
+E_cfs(i)=norm(cfs{i},2)^2;  %% 1-èŒƒæ•°ï¼šå°±æ˜¯norm(...,1)ï¼Œå³å„å…ƒç´ ç»å¯¹å€¼ä¹‹å’Œï¼›2-èŒƒæ•°ï¼šå°±æ˜¯norm(...,2)ï¼Œå³å„å…ƒç´ å¹³æ–¹å’Œå¼€æ ¹å·ï¼›
 end
 E_total=sum(E_cfs);
 for i=1:2^D_layers
-  p_node(i)= 100*E_cfs(i)/E_total;           % ÇóµÃÃ¿¸ö½ÚµãµÄÕ¼±È
+  p_node(i)= 100*E_cfs(i)/E_total;           % æ±‚å¾—æ¯ä¸ªèŠ‚ç‚¹çš„å æ¯”
 end
 [value,location]=sort(p_node,'descend');
 
 pick_p_node=location(1:6);
 for i=1:6
 pick_frequency_band(i,:)=[(pick_p_node(i)-0.5)*(fs/2/2^D_layers) (pick_p_node(i)+0.5)*(fs/2/2^D_layers)];
+%pick_frequency_band(i,:)=[(pick_p_node(i)-1)*(fs/2/2^D_layers) (pick_p_node(i)+1)*(fs/2/2^D_layers)];
 end
 figure;
 x=1:2^D_layers;
 bar(x,p_node);
-title('¸÷¸öÆµ¶ÎÄÜÁ¿ËùÕ¼µÄ±ÈÀı');
-xlabel('ÆµÂÊ Hz');
-ylabel('ÄÜÁ¿°Ù·Ö±È/%');
+title('å„ä¸ªé¢‘æ®µèƒ½é‡æ‰€å çš„æ¯”ä¾‹');
+xlabel('é¢‘ç‡ Hz');
+ylabel('èƒ½é‡ç™¾åˆ†æ¯”/%');
 for j=1:2^D_layers
 text(x(j),p_node(j),num2str(p_node(j),'%0.2f'),...
     'HorizontalAlignment','center',...
@@ -163,7 +167,7 @@ for i=1:6
     ylabel('Time (seconds)')
     wtf = gca;
     wtf.XDir = 'reverse';
-    view([30 45])
+    view([45 65])
 end
 
 
