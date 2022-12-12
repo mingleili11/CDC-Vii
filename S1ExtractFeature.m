@@ -2,16 +2,16 @@ clear;clc;close all
 %%
 fs = 25.6e3;
 g = 9.81;
-map = jet(255);%figureÖĞÊ¹ÓÃµÄÑÕÉ«¾ØÕó¾ÍÊÇ±»À©³äµ½256É«µÄjetÑÕÉ«£¬¶ø²»ÊÇÔ­À´64É«µÄjetÑÕÉ«¡£
+map = jet(255);%figureä¸­ä½¿ç”¨çš„é¢œè‰²çŸ©é˜µå°±æ˜¯è¢«æ‰©å……åˆ°256è‰²çš„jeté¢œè‰²ï¼Œè€Œä¸æ˜¯åŸæ¥64è‰²çš„jeté¢œè‰²ã€‚
 
 %% Extract train features
-path = fullfile('..', 'Dataset', 'Train_set');
+path =  'G:\windows\projection\project for measurement\exe0\Dataset_new\phm-ieee-2012-data-challenge-dataset\Full_Test_Set\';% æ–‡ä»¶å¤¹è·¯å¾„
 folders = dir(path);
-folders = folders(3:end); % ËùÓĞÎÄ¼ş¼Ğ
+folders = folders(3:end); % æ‰€æœ‰æ–‡ä»¶å¤¹
 
-for folderIdx = 4:length(folders)
-    curfolder = folders(folderIdx).name % µ±Ç°ÎÄ¼ş¼Ğ
-    files = dir(fullfile(path, curfolder, 'acc*.csv')); % µ±Ç°ÎÄ¼ş¼ĞÏÂËùÓĞcsvÎÄ¼ş
+for folderIdx =4:5%length(folders)
+    curfolder = folders(folderIdx).name % å½“å‰æ–‡ä»¶å¤¹
+    files = dir(fullfile(path, curfolder, 'acc*.csv')); % å½“å‰æ–‡ä»¶å¤¹ä¸‹æ‰€æœ‰csvæ–‡ä»¶
     N = length(files);
     for i = 1:N 
         
@@ -22,105 +22,22 @@ for folderIdx = 4:length(folders)
         end
         acc = data(:, 5);
         [coeff, f] = cwt(acc, fs);
+        low = max(find(f>800))+1;
+        high = max(find(f>2400));
         H = abs(coeff);
-        windows_size=40;
-        for k = 1:size(H,1)-windows_size
-            A(k) = sum(sum(H(k:k+windows_size,:)));
-        end
-        a = find(max(A));
-        H = H(a:windows_size+a,:);
         %tt=[1:1:fs/10];
         %pcolor(tt,f,H);shading interp
+        H=H(high:low,:);
         H = imresize(H, [128, 128]);
-        pcolor(H);shading interp
+        H=flipud(H);
+         %figure;
+        %pcolor(H);shading interp
         filename = sprintf('%s_%s_%d', folders(folderIdx).name, files(i).name(1:end-4), N);
         %saveas(gcf,['../Dataset/cwt_train_image/', filename, '.jpg'])
         %fprintf('%d %d %s\n',N,i,strcat(filename));
-        save(['../Dataset/cwt_train_set/', filename, '.mat'], 'H')
+        save(['G:\windows\projection\project for measurement\exe0\Dataset_new\cwt_test_set_use_1\', filename, '.mat'], 'H')
     end     
 end
-%%
-% save_path='E:\windows\Ñ§Êõ\»ã±¨\35 »ùÓÚÏÖÓĞÊı¾İ¼¯µÄ´´ĞÂµã×Ó\transformer_informer_exe\project_for_paper\reference\Dataset\cwt_train_image\';   
-% img_path_list = dir(strcat(save_path,'*.jpg')); 
-% img_num=length(img_path_list);   %ÅĞ¶ÏÍ¼Æ¬¸öÊı
-% for i = 1:img_num     %ÒòÎªÅÄÕÕÆ¬µÄÊ±ºò¹Ì¶¨ºÃÁËÎ»ÖÃËùÒÔÓÃÒ»¸öforÑ­»·¾Í¿ÉÒÔ½ØÈ¡³öËùÓĞµÄÍ¼Æ¬µÄÊı×Ö
-%     picture_name =img_path_list(i).name;
-%     picture = imread(strcat(save_path,picture_name));
-%     imshow(picture);
-%     %[x,y]=ginput(2);   %ÏÈÓÃµÄginputº¯Êı»ñÈ¡Í¼Æ¬ÖĞÊı×ÖµÄÆğÊ¼×ø±ê
-%     x=[116,790];
-%     y=[53,584];
-%     picture_1 =imcrop(picture,[x(1),y(1),abs(x(1)-x(2)),abs(y(1)-y(2))]);  %ÇĞ¸îÍ¼Ïñ£¬ÆğÊ¼×ø±êµã£¨x1,y1£©½ØÈ¡µ½ÖÕÖ¹×ø±êµã(x2,y2)
-%     imwrite(picture_1,['../Dataset/cwt_train_cropimage/', picture_name]);%½«Í¼Æ¬±£´æÔÚ³ÌĞòËùÔÚÎÄ¼ş¼ĞÖĞ
-% end
-
-%% Extract test features
-path = fullfile('..', 'Dataset', 'Test_set');
-folders = dir(path);
-folders = folders(3:end); % ËùÓĞÎÄ¼ş¼Ğ
-
-for folderIdx = 1:length(folders) 
-    curfolder = folders(folderIdx).name % µ±Ç°ÎÄ¼ş¼Ğ
-    files = dir(fullfile(path, curfolder, 'acc*.csv')); % µ±Ç°ÎÄ¼ş¼ĞÏÂËùÓĞcsvÎÄ¼ş
-    N = length(files);
-    for i = 1:N        
-        data = csvread(fullfile(files(i).folder, files(i).name));
-        acc = data(:, 5);
-        [coeff, f] = cwt(acc, fs);
-        
-        H = abs(coeff);
-        windows_size=40;
-        for k = 1:size(H,1)-windows_size
-            A(k) = sum(sum(H(k:k+windows_size,:)));
-        end
-        a = find(max(A));
-        H = H(a:windows_size+a,:);
-        %tt=[1:1:fs/10];
-        %pcolor(tt,f,H);shading interp
-        H = imresize(H, [128, 128]);
-        pcolor(H);shading interp
-        
-        
-        H = imresize(H, [128, 128]);
-        pcolor(H);shading interp
-        filename = sprintf('%s_%s_%d', folders(folderIdx).name, files(i).name(1:end-4), N);
-        %saveas(gcf,['../Dataset/cwt_test_image/', filename, '.jpg'])
-
-        save(['../Dataset/cwt_test_set/', filename, '.mat'], 'H')
-        
-    end
-end
-%%
-% save_path='E:\windows\Ñ§Êõ\»ã±¨\35 »ùÓÚÏÖÓĞÊı¾İ¼¯µÄ´´ĞÂµã×Ó\transformer_informer_exe\project_for_paper\reference\Dataset\cwt_test_image\';   
-% img_path_list = dir(strcat(save_path,'*.jpg')); 
-% img_num=length(img_path_list);   %ÅĞ¶ÏÍ¼Æ¬¸öÊı
-% for i = 1:img_num     %ÒòÎªÅÄÕÕÆ¬µÄÊ±ºò¹Ì¶¨ºÃÁËÎ»ÖÃËùÒÔÓÃÒ»¸öforÑ­»·¾Í¿ÉÒÔ½ØÈ¡³öËùÓĞµÄÍ¼Æ¬µÄÊı×Ö
-%     picture_name =img_path_list(i).name;
-%     picture = imread(strcat(save_path,picture_name));
-%     imshow(picture);
-%     %[x,y]=ginput(2);   %ÏÈÓÃµÄginputº¯Êı»ñÈ¡Í¼Æ¬ÖĞÊı×ÖµÄÆğÊ¼×ø±ê
-%     x=[217,1480];
-%     y=[92.75,1037.8];
-%     picture_1 =imcrop(picture,[x(1),y(1),abs(x(1)-x(2)),abs(y(1)-y(2))]);  %ÇĞ¸îÍ¼Ïñ£¬ÆğÊ¼×ø±êµã£¨x1,y1£©½ØÈ¡µ½ÖÕÖ¹×ø±êµã(x2,y2)
-%     imwrite(picture_1,['../Dataset/cwt_test_cropimage/', picture_name, '.jpg']);%½«Í¼Æ¬±£´æÔÚ³ÌĞòËùÔÚÎÄ¼ş¼ĞÖĞ
-% end
-
-% %%
-% [coeff, f] = cwt(acc, fs);
-% H = abs(coeff);
-% % H = min(max(H, 0.03), 3);
-% t = (1:length(acc))/fs;
-% % H = (H - min(H(:)))./(max(H(:))- min(H(:)));
-% 
-% figure()
-% pcolor(t, f/1000, H)
-% xlabel('Time [s]')
-% ylabel('Frequency [kHz]')
-% yticks(2.^(-6:3))
-% set(gca,'YScale','log') 
-% shading interp
-% colormap('jet')
-% colorbar
 
 
 
